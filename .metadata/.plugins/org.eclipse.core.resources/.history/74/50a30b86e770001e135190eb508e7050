@@ -1,0 +1,96 @@
+package apsII;
+import javax.swing.JOptionPane;
+
+public class aps {
+
+	public static void main(String[] args) {
+		int num, i, j, matricula[], idade[], aux;
+		String entrada;
+		
+		matricula = new int[5];
+		idade = new int[5];
+		
+		i = 0;
+		
+		for(i=0; i < idade.length; i++) { 
+			
+			entrada = JOptionPane.showInputDialog("Digite sua matrícula");
+			matricula[i] = Integer.parseInt(entrada);
+			entrada = JOptionPane.showInputDialog("Digite sua idade");
+			idade[i] = Integer.parseInt(entrada);
+		}
+		
+		do {
+			entrada = JOptionPane.showInputDialog("DIGITE QUAL OPCAO O PROGRAMA DEVE APRESENTAR"+
+					"\n\n\t1. MOSTRAR\n\t2. ORDENAR CRESCENTE POR MATRICULA"+
+					"\n\t3. ORDENAR DECRESCENTE POR IDADE\n\t4. INVERTER"+
+					"\n\t5. PROCURAR IDADE\n\t6. PROCURAR MATRICULA" +
+					"\n\t7. REPETE" +
+					"\n\t99. VAZAR\n\n\tQUAL A OPERACAO VOCE QUER?");
+			num = Integer.parseInt(entrada);
+				
+
+			switch(num) {
+				case 1:
+					for(i=0; i < idade.length; i++) {
+						System.out.println("Matricula: " + matricula[i]);
+						System.out.println("Idade: " + idade[i]);
+						System.out.println("");
+					}	
+					System.out.println("********************************************");
+					break;
+				case 2:
+					for(i=0; i < matricula.length; i++) {
+						for(j=0; j < (matricula.length - 1); j++) {
+							if(matricula[j] > matricula[j+1]) {
+								aux = matricula[j];
+								matricula[j] = matricula[j+1];
+								matricula[j+1] = aux;
+							}
+						}
+					}
+					
+					for(i=0; i < idade.length; i++) {
+						System.out.println("Matricula: " + matricula[i]);
+						System.out.println("Idade: " + idade[i]);
+						System.out.println("");
+					}
+					System.out.println("********************************************");
+					break;
+				case 3:
+					for(i=0; i < idade.length; i++) {
+						for(j=0; j < (idade.length - 1); j++) {
+							if(idade[j] < idade[j+1]) {
+								aux = idade[j];
+								idade[j] = idade[j+1];
+								idade[j+1] = aux;
+							}
+						}
+					}
+					for(i=0; i < idade.length; i++) {
+						System.out.println("Matricula: " + matricula[i]);
+						System.out.println("Idade: " + idade[i]);
+						System.out.println("");
+					}
+					System.out.println("********************************************");
+					break;
+				case 4:
+					for(i=0; i < idade.length; i++) {
+						for(j=0; j < (idade.length - 1); j++) {
+								aux = idade[j + j];
+								idade[j + j] = idade[idade.length - j];
+								idade[idade.length-j] = aux;
+			
+						}
+					}
+				case 5:
+				case 6:
+				case 7:
+				default: 
+					System.out.println("Opcao invalida, favor informe novamente.");
+					break;
+			}
+		} while(num != 99);
+	}
+
+}
