@@ -19,7 +19,11 @@ public class Main {
 			num = Integer.parseInt(entrada);
 			switch(num) {
 				case 1:
-					chama.enqueue(18, 3838);
+					entrada = JOptionPane.showInputDialog("DIGITE A IDADE");
+					int idd = Integer.parseInt(entrada);
+					entrada = JOptionPane.showInputDialog("DIGITE A MATRICULA");
+					int matricula = Integer.parseInt(entrada);
+					chama.enqueue(matricula, idd);
 					break;
 				case 2:
 					int removido = chama.dequeue();
@@ -32,6 +36,24 @@ public class Main {
 				case 3:		
 					chama.mostrar();
 					break;
+				case 4: 
+					chama.mostrarInvertido();
+					break;
+				case 5: 
+					entrada = JOptionPane.showInputDialog("DIGITE A MATRICULA QUE DESEJA PROCURAR");
+					matricula = Integer.parseInt(entrada);
+					chama.procurar(matricula);
+					break;
+				case 6: 
+					chama.mediaIdade();
+					break;
+				case 7:
+					chama.reset();
+					break;
+				case 10:
+					num = 99;
+				default:
+					System.out.println("DIGITE UMA OPCAO VALIDA");
 			}
 		}while(num != 99);
 	}
