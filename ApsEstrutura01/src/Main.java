@@ -50,8 +50,15 @@ public class Main {
 				case 7:
 					chama.reset();
 					break;
+				case 8:
+					chama.mostraCalda();
+					break;
+				case 9:
+					chama.mostraCabeca();
+					break;
 				case 10:
 					num = 99;
+					break;
 				default:
 					System.out.println("DIGITE UMA OPCAO VALIDA");
 			}

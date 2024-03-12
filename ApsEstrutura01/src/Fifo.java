@@ -3,16 +3,15 @@ public class Fifo {
 	
 	public Nodo comeco;
 	public Nodo fim;
-	public Nodo aux;
 	
 	
-	Fifo(){
+	public Fifo(){
 		this.comeco = null;
 		this.fim = null;
 	}
 	
 	public void enqueue(int matricula, int idade) {
-		aux = new Nodo(matricula, idade);
+		Nodo aux = new Nodo(matricula, idade);
 		if(comeco == null) {
 			comeco = aux;
 		} else {
@@ -26,55 +25,53 @@ public class Fifo {
 		int aux = -99;
 		if(comeco != null) { 
 			aux = comeco.matricula;
-			comeco = comeco.anterior;	
+			comeco = comeco.proximo;	
 		}
 		if(comeco == null) {
-			comeco = null;
+			fim = null;
 		}
 		return aux;
 	}
 	
 	public void mostrar() {
-		if(fim == null) {
-			System.out.println("NAO A NADA PARA MOSTRAR");
-		}
-		aux = fim;
-		while(aux != null) {
-			System.out.println("Idade: " + fim.idade + " Matricula: " + fim.matricula);
-			if (aux.anterior == null) {
-				break;
-			}
-			aux = aux.anterior;
-		}
-	}
-	
-	public void mostrarInvertido() {
+		Nodo aux;
 		if(comeco == null) {
 			System.out.println("NAO A NADA PARA MOSTRAR");
+			return;
 		}
 		aux = comeco;
-		while(comeco != null) {
-			System.out.println("Idade: " + comeco.idade + " Matricula: " + comeco.matricula);
-			if (aux.proximo == null) {
-				break;
-			}
+		while(aux != null) {
+			System.out.println("Idade: " + aux.idade + " Matricula: " + aux.matricula);
 			aux = aux.proximo;
 		}
 	}
 	
-	public void procurar(int matricula) {
-		int i = 0;
-		if(fim == null) {
-			System.out.println("NAO A NADA PARA PROCURAR");
+	public void mostrarInvertido() {
+		Nodo aux;
+		if(comeco == null) {
+			System.out.println("NAO A NADA PARA MOSTRAR");
 		}
 		aux = fim;
+		while(aux != null) {
+			System.out.println("Idade: " + aux.idade + " Matricula: " + aux.matricula);
+			aux = aux.anterior;
+		}
+	}
+	
+	public void procurar(int matricula) {
+		Nodo aux;
+		int i = 0;
+		if(comeco == null) {
+			System.out.println("NAO A NADA PARA PROCURAR");
+		}
+		aux = comeco;
 		while(aux != null) {
 			if (aux.matricula == matricula) {
 				System.out.println("A idade referente a matricula " + matricula + ": " + aux.idade);
 				i = 99;
 				break;
 			}
-			aux = aux.anterior;
+			aux = aux.proximo;
 		}	
 		if(i != 99) {
 			System.out.println("NAO ENCONTROU NADA!");
@@ -82,6 +79,7 @@ public class Fifo {
 	}
 	
 	public void mediaIdade() {
+		Nodo aux;
 		int count = 0;
 		int total = 0;
 		if(fim == null) {
@@ -108,16 +106,16 @@ public class Fifo {
 	}
 	
 	public void mostraCalda() {
-		if(comeco != null) {
-			System.out.println(comeco.matricula);
+		if(fim != null) {
+			System.out.println(fim.matricula);
 		} else {
 			System.out.println("NAO A NADA PARA MOSTRAR");
 		}
 	}
 	
 	public void mostraCabeca() {
-		if(fim != null) {
-			System.out.println(fim.matricula);
+		if(comeco != null) {
+			System.out.println(comeco.matricula);
 		} else {
 			System.out.println("NAO A NADA PARA MOSTRAR");
 		}
