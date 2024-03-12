@@ -24,11 +24,11 @@ public class Fifo {
 	
 	public int dequeue() {
 		int aux = -99;
-		if(fim != null) { 
-			aux = fim.matricula;
-			fim = fim.anterior;	
+		if(comeco != null) { 
+			aux = comeco.matricula;
+			comeco = comeco.anterior;	
 		}
-		if(fim == null) {
+		if(comeco == null) {
 			comeco = null;
 		}
 		return aux;
