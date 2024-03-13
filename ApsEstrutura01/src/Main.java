@@ -2,7 +2,6 @@ import javax.swing.JOptionPane;
 
 public class Main {
 	
-	
 	public static void main(String[] args) {
 		String entrada;
 		int num = 0;
@@ -19,18 +18,18 @@ public class Main {
 			num = Integer.parseInt(entrada);
 			switch(num) {
 				case 1:
-					entrada = JOptionPane.showInputDialog("DIGITE A IDADE");
+					entrada = JOptionPane.showInputDialog("\nDIGITE A IDADE");
 					int idd = Integer.parseInt(entrada);
-					entrada = JOptionPane.showInputDialog("DIGITE A MATRICULA");
+					entrada = JOptionPane.showInputDialog("\nDIGITE A MATRICULA");
 					int matricula = Integer.parseInt(entrada);
 					chama.enqueue(matricula, idd);
 					break;
 				case 2:
 					int removido = chama.dequeue();
 					if(removido == -99) {
-						System.out.println("NAO A NADA PARA REMOVER");
+						System.out.println("\nNAO A NADA PARA REMOVER");
 					} else{
-						System.out.println("MATRICULA " + removido + " FOI REMOVIDA");
+						System.out.println("\nMATRICULA " + removido + " FOI REMOVIDA");
 					};
 					break;
 				case 3:		
@@ -40,21 +39,44 @@ public class Main {
 					chama.mostrarInvertido();
 					break;
 				case 5: 
-					entrada = JOptionPane.showInputDialog("DIGITE A MATRICULA QUE DESEJA PROCURAR");
+					entrada = JOptionPane.showInputDialog("\nDIGITE A MATRICULA QUE DESEJA PROCURAR");
 					matricula = Integer.parseInt(entrada);
-					chama.procurar(matricula);
+					
+					int aux = chama.procurar(matricula);	
+					if(aux == -99){
+                        System.out.println("\nNINGUEM NA FILA COM ESSA MATRICULA");
+                    }else{
+                        System.out.println("\nA IDADE DO FUNCIONARIO E: " + aux);
+                    }
 					break;
 				case 6: 
-					chama.mediaIdade();
+					aux = chama.mediaIdade();
+					if(aux == -99) {
+						System.out.println("\nNAO A NADA NA FILA");
+						break;
+					}
+
+					System.out.print("\nA MEDIA DE TODAS AS IDADES E: " + aux);
 					break;
 				case 7:
 					chama.reset();
+		             System.out.println("\nFIFO RESETADO");
 					break;
 				case 8:
-					chama.mostraCalda();
+					aux = chama.mostraCalda();	
+					if(aux == -99) {
+						System.out.println("\nNAO A NADA NA FILA");
+						break;
+					}
+					System.out.println("\nA CADA DA FILA E: " + aux);
 					break;
 				case 9:
-					chama.mostraCabeca();
+					aux = chama.mostraCabeca();
+					if(aux == -99) {
+						System.out.println("\nNAO A NADA NA FILA");
+						break;
+					}
+					System.out.println("\nA CABECA DA FILA E: " + aux);
 					break;
 				case 10:
 					num = 99;

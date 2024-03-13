@@ -4,7 +4,6 @@ public class Fifo {
 	public Nodo comeco;
 	public Nodo fim;
 	
-	
 	public Fifo(){
 		this.comeco = null;
 		this.fim = null;
@@ -36,12 +35,12 @@ public class Fifo {
 	public void mostrar() {
 		Nodo aux;
 		if(comeco == null) {
-			System.out.println("NAO A NADA PARA MOSTRAR");
+			System.out.println("\nNAO A NADA PARA MOSTRAR");
 			return;
 		}
 		aux = comeco;
 		while(aux != null) {
-			System.out.println("Idade: " + aux.idade + " Matricula: " + aux.matricula);
+			System.out.println("\nIdade: " + aux.idade + " Matricula: " + aux.matricula);
 			aux = aux.proximo;
 		}
 	}
@@ -49,41 +48,39 @@ public class Fifo {
 	public void mostrarInvertido() {
 		Nodo aux;
 		if(comeco == null) {
-			System.out.println("NAO A NADA PARA MOSTRAR");
+			System.out.println("\nNAO A NADA PARA MOSTRAR");
 		}
 		aux = fim;
 		while(aux != null) {
-			System.out.println("Idade: " + aux.idade + " Matricula: " + aux.matricula);
+			System.out.println("\nIdade: " + aux.idade + " Matricula: " + aux.matricula);
 			aux = aux.anterior;
 		}
 	}
 	
-	public void procurar(int matricula) {
+	public int procurar(int matricula) {
 		Nodo aux;
-		int i = 0;
+		int idade = -99;
 		if(comeco == null) {
-			System.out.println("NAO A NADA PARA PROCURAR");
+			return -99;
 		}
 		aux = comeco;
 		while(aux != null) {
 			if (aux.matricula == matricula) {
-				System.out.println("A idade referente a matricula " + matricula + ": " + aux.idade);
-				i = 99;
+				idade = aux.idade;
 				break;
 			}
 			aux = aux.proximo;
 		}	
-		if(i != 99) {
-			System.out.println("NAO ENCONTROU NADA!");
-		}
+		return idade;
 	}
 	
-	public void mediaIdade() {
+	public int mediaIdade() {
 		Nodo aux;
 		int count = 0;
 		int total = 0;
+		
 		if(fim == null) {
-			System.out.println("NAO A NADA PARA FAZER MEDIA");
+			return -99;
 		}
 		aux = fim;
 		while(aux != null) {
@@ -96,8 +93,9 @@ public class Fifo {
 		}
 		if(fim != null) {
 			int media = total / count;
-			System.out.print("A MEDIA DE TODAS AS IDADES E: " + media);
+			return media;
 		}
+		return -99;
 	}
 	
 	public void reset() {
@@ -105,19 +103,19 @@ public class Fifo {
 		fim = null;
 	}
 	
-	public void mostraCalda() {
+	public int mostraCalda() {
 		if(fim != null) {
-			System.out.println(fim.matricula);
+			return fim.matricula;
 		} else {
-			System.out.println("NAO A NADA PARA MOSTRAR");
+			return -99;
 		}
 	}
 	
-	public void mostraCabeca() {
+	public int mostraCabeca() {
 		if(comeco != null) {
-			System.out.println(comeco.matricula);
+			return comeco.matricula;
 		} else {
-			System.out.println("NAO A NADA PARA MOSTRAR");
+			return -99;
 		}
 	}
 }
