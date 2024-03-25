@@ -118,4 +118,51 @@ public class Fifo {
 			return -99;
 		}
 	}
+	
+	public int repetida() {
+		if(comeco == null) {
+			return -99;
+		}	
+		Nodo aux = comeco;
+		Nodo outro = null;
+		while(aux != null){
+			if(aux.proximo == null) {
+				return -99;
+			}
+			outro = aux.proximo;
+			while(outro != null) {
+				if(aux.matricula == outro.matricula) {
+					return aux.matricula;
+				}			
+				if(outro.proximo == null) {
+					outro = null;
+					break;
+				} 
+				outro = outro.proximo;
+			}	
+			aux = aux.proximo;
+		}	
+		return -99;	
+	}
+	
+	public int velho() {
+		if(comeco == null) {
+			return -99;
+		}	
+		Nodo aux = comeco;
+		int idade = -99;
+		int matricula = 0;
+		while(aux != null) {
+			if(aux.idade > idade) {
+				idade = aux.idade;
+				matricula = aux.matricula;
+			}
+			if(aux.proximo == null) {
+				break;
+			}
+			aux = aux.proximo;
+		}
+		return matricula;
+	}
+	
 }

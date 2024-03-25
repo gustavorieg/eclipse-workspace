@@ -13,8 +13,9 @@ public class Main {
 					"\n\t3. MOSTRAR\n\t4. MOSTRAR INVERTIDA"+
 					"\n\t5. PROCURAR\n\t6. MEDIA IDADE" +
 					"\n\t7. REINICIALIZAR\n\t8. MOSTRAR CALDA" +
-					"\n\t9. MOSTRAR CABECA" +
-					"\n\t10. VAZAR\n\n\tQUAL A OPCAO VOCE QUER UTILIZAR?");
+					"\n\t9. MOSTRAR CABECA\n\t10. REPETIDO" +
+					"\n\t11. MAIS VELHO" + 
+					"\n\t12. VAZAR\n\n\tQUAL A OPCAO VOCE QUER UTILIZAR?");
 			num = Integer.parseInt(entrada);
 			switch(num) {
 				case 1:
@@ -79,6 +80,27 @@ public class Main {
 					System.out.println("\nA CABECA DA FILA E: " + aux);
 					break;
 				case 10:
+					aux = chama.repetida();
+					
+					if(aux == -99) {
+						System.out.println("\nNAO TEM REPETIDO");
+						break;
+					}
+					
+					System.out.println("\nMATRICULA REPETIDA: " + aux);
+					break;
+				case 11:
+					aux = chama.velho();
+					
+					if(aux == -99) {
+						System.out.println("\nLISTA VAZIA");
+						break;
+					}
+					
+					System.out.println("\nMATRICULA DO MAIS VELHO: " + aux);
+					break;
+					
+				case 12:
 					num = 99;
 					break;
 				default:
