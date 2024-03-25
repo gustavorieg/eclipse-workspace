@@ -1,64 +1,70 @@
 import java.util.Scanner;
 
 public class WrapperQualRede {
+
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
-        // Recebendo o número IP e a máscara de sub-rede
-        System.out.println("Digite o número IP:");
-        String ipAddress = scanner.nextLine();
-        System.out.println("Digite a máscara de sub-rede (no formato /XX):");
-        String subnetMask = scanner.nextLine();
+        System.out.print("Digite o número IP: ");
+        String ip = scanner.nextLine();
 
-        scanner.close();
+        System.out.print("Digite a máscara de sub-rede (no formato /XX): ");
+        String mascaraString = scanner.nextLine();
 
-        // Calculando a rede
-        String networkAddress = calculateNetwork(ipAddress, subnetMask);
-        System.out.println("A rede à qual o IP pertence é: " + networkAddress);
+        // Remover o '/' do início da máscara
+        int mascara = Integer.parseInt(mascaraString.substring(1));
+
+        String[] partesIp = ip.split("\\.");
+        int[] ipNumerico = new int[4];
+
+        // Converter o endereço IP para um array de inteiros
+        for (int i = 0; i < partesIp.length; i++) {
+            ipNumerico[i] = Integer.parseInt(partesIp[i]);
+        }
+
+        // Calcular a rede
+        int[] rede = calcularRede(ipNumerico, mascara);
+
+        // Imprimir o resultado em formato decimal
+        System.out.print("A rede à qual o IP pertence é: ");
+        for (int i = 0; i < rede.length; i++) {
+            System.out.print(rede[i]);
+            if (i < 3) {
+                System.out.print(".");
+            }
+        }
+        System.out.println();
+
+        // Imprimir o resultado em formato binário
+        System.out.print("Em formato binário: ");
+        for (int i = 0; i < rede.length; i++) {
+            System.out.print(decimalParaBinario(rede[i]));
+            if (i < 3) {
+                System.out.print(".");
+            }
+        }
+        System.out.println();
     }
 
-    public static String calculateNetwork(String ipAddress, String subnetMask) {
-        // Convertendo o endereço IP para binário
-        String[] ipOctets = ipAddress.split("\\.");
-        StringBuilder binaryIP = new StringBuilder();
-        for (String octet : ipOctets) {
-            String binaryOctet = Integer.toBinaryString(Integer.parseInt(octet));
-            while (binaryOctet.length() < 8) {
-                binaryOctet = "0" + binaryOctet;
-            }
-            binaryIP.append(binaryOctet);
+    public static int[] calcularRede(int[] ip, int mascara) {
+        int[] rede = new int[4];
+
+        // Calcular a máscara de sub-rede
+        int mascaraInt = 0xFFFFFFFF << (32 - mascara);
+
+        // Aplicar a máscara ao endereço IP
+        for (int i = 0; i < 4; i++) {
+            rede[i] = (ip[i] & (mascaraInt >> (24 - 8 * i))) & 0xFF;
         }
 
-        // Convertendo a máscara de sub-rede para binário
-        int maskLength = Integer.parseInt(subnetMask.substring(1));
-        StringBuilder binaryMask = new StringBuilder();
-        for (int i = 0; i < maskLength; i++) {
-            binaryMask.append("1");
-        }
-        while (binaryMask.length() < 32) {
-            binaryMask.append("0");
-        }
+        return rede;
+    }
 
-        // Realizando a operação AND bit a bit entre o endereço IP e a máscara de sub-rede
-        StringBuilder binaryNetwork = new StringBuilder();
-        for (int i = 0; i < 32; i++) {
-            char ipBit = binaryIP.charAt(i);
-            char maskBit = binaryMask.charAt(i);
-            if (ipBit == '1' && maskBit == '1') {
-                binaryNetwork.append("1");
-            } else {
-                binaryNetwork.append("0");
-            }
+    public static String decimalParaBinario(int numero) {
+        StringBuilder binario = new StringBuilder();
+        for (int i = 7; i >= 0; i--) {
+            binario.append((numero >> i) & 1);
         }
-
-        // Convertendo o resultado de volta para decimal
-        StringBuilder networkAddress = new StringBuilder();
-        for (int i = 0; i < 32; i += 8) {
-            String octetBinary = binaryNetwork.substring(i, i + 8);
-            int octetDecimal = Integer.parseInt(octetBinary, 2);
-            networkAddress.append(octetDecimal).append(".");
-        }
-        networkAddress.deleteCharAt(networkAddress.length() - 1); // Removendo o último ponto
-        return networkAddress.toString();
+        return binario.toString();
     }
 }
