@@ -10,7 +10,7 @@ public class WrapperIpToBinari {
 
         scanner.close();
 
-        // Dividindo o input em endereço IP e máscara de sub-rede
+        // Dividindo o input em endereço IP e máscara de sub rede
         StringTokenizer tokenizer = new StringTokenizer(input, "/");
         String ip = tokenizer.nextToken();
         int subMascara = Integer.parseInt(tokenizer.nextToken());
@@ -35,8 +35,8 @@ public class WrapperIpToBinari {
         String primeirosDoisBits = binaryIP.substring(0, 2);
         String ipClass = determineIpClass(primeirosDoisBits);
 
-        // Verificando a máscara de sub-rede
-        String corretaMask = determineCorrectSubnetMask(ipClass);
+        // Verificando a máscara de sub rede
+        String corretaMask = determineCorretaMascara(ipClass);
 
         if (subMascara != corretaMask.length()) {
             System.out.println("A máscara informada está incorreta para a classe " + ipClass + ".");
@@ -48,8 +48,8 @@ public class WrapperIpToBinari {
         System.out.println("Classe do endereço IP: " + ip + " = " + binaryIP);
     }
 
-    public static String determineIpClass(String firstTwoBits) {
-        switch (firstTwoBits) {
+    public static String determineIpClass(String primeirosDoisBits) {
+        switch (primeirosDoisBits) {
             case "00":
                 return "A";
             case "10":
@@ -61,7 +61,7 @@ public class WrapperIpToBinari {
         }
     }
 
-    public static String determineCorrectSubnetMask(String ipClass) {
+    public static String determineCorretaMascara(String ipClass) {
         switch (ipClass) {
             case "A":
                 return "255.0.0.0";
