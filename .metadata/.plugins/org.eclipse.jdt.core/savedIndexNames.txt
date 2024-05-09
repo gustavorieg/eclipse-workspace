@@ -1,27 +1,18 @@
-<<<<<<< HEAD
-INDEX VERSION 1.134+C:\Users\RIIIEG\eclipse-workspace\.metadata\.plugins\org.eclipse.jdt.core
-2127704158.index
-2896538251.index
-1865797976.index
-3875950201.index
-557155301.index
-2662345529.index
-3373848601.index
-3418403236.index
-2112834623.index
-1831284322.index
-=======
 INDEX VERSION 1.134+C:\Users\grieg\Documents\Estudos\eclipse-workspace\.metadata\.plugins\org.eclipse.jdt.core
-3373848601.index
-557155301.index
-3592980339.index
-1831284322.index
-3927496509.index
-2896538251.index
+2607048606.index
+640301815.index
 2662345529.index
-3418403236.index
-1865797976.index
+3592980339.index
 1525998303.index
+1189199583.index
 2112834623.index
+3723698896.index
+1865797976.index
+1831284322.index
+557155301.index
+3373848601.index
+3927496509.index
+3418403236.index
+2896538251.index
 3875950201.index
->>>>>>> be06060cf61ed76e5892cdb102e757ca19790087
+2688526520.index

@@ -1,0 +1,87 @@
+jshortcut-0.4-oberzalek  September 16, 2010  Oberzalek 64-bit DLLs
+
+  Enhancements:
+
+  * Martin Oberzalek has contributed 64-bit DLLs for ia64 and amd64.
+  * Martin also contributed a mechanism whereby if the DLL is not found
+    in the PATH or CLASSPATH, the jshortcut jar file is examined to see
+    if the appropriate DLL is contained in it.  If so, it is extracted
+    to a temporary location, marked for delete-on-exit, and used from there.
+    This allows multiple architecture-specific DLLs to be bundled into
+    the jar file for easier distribution.
+
+  Other Changes:
+
+  * JShortcut is now being hosted on github, so the latest versions
+    will be found there.
+
+===============================================================================
+
+jshortcut-0_4  November 15, 2003  Released under LGPL
+
+  Enhancements:
+
+  * The JShellLink.getDirectory method now includes the locations
+    "common_programs" and "common_desktopdirectory", corresponding to
+    CDISL_COMMON_PROGRAMS and CDISL_COMMON_DESKTOPDIRECTORY, which return
+    the All Users locations for Programs and Desktop.  Note that these will
+    not work on older versions of Windows.
+
+  Other Changes:
+
+  * JShellLink is now released under the LGPL rather than the GPL.
+
+===============================================================================
+
+jshortcut-0_3  September 12, 2003  Use native string encoding
+
+  Enhancements
+
+  * The new setArguments and getArguments methods to JShellLink allow you
+    to manipluate the arguments field of the shortcut.
+
+  * The native code now uses a context structure instead of static variables,
+    which should make it possible to use JShortcut in a multi-threaded program.
+
+  Bug Fixes:
+
+  * JShortcut now uses the native string encoding to convert between Java
+    strings and native strings rather than assuming UTF-8.
+
+===============================================================================
+
+jshortcut-0_2  December 30, 2002  Ability to read existing shortcuts
+
+  Enhancements
+  
+  * The new methods getIconLocation, getIconIndex, setIconLocation and
+    setIconIndex allow viewing and changing the location of the icon for
+    a shortcut.
+
+  * The new load() method allows reading an existing shortcut from disk
+    into a JShortcut object.
+
+  Bug Fixes
+
+  * Before doing a save() on a shell link, JShortcut now first does a load
+    on that shell link, so that any fields not set by the application will
+    be preserved in the shell link.
+
+===============================================================================
+
+jshortcut-0_1  November 21, 2002  First release
+
+  Enhancements
+
+  * JShellLink.getDirectory allows getting paths to special folders for
+    desktop, personal, programs, program_files.
+
+  * JShellLink allows setting folder, name, description, path,
+    workingDirectory.
+
+  * New shortcuts can be created only.
+    No capability to read existing shortcuts.
+
+===============================================================================
+
+JShortcut  v0.0  November 15, 2002  Project started
